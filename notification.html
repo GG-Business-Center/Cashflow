@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-grow: 1; /* Permet à la conteneur de prendre de la place */
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .info h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .info ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .info ul li:last-child {
+            border-bottom: none;
+        }
+        .link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            margin-top: auto; /* Pousse le pied de page en bas */
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 24px;
+        }
+        nav {
+            display: none; /* Masqué par défaut */
+            flex-direction: column;
+            background-color: #333;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav.active {
+            display: flex; /* Affiché lorsque le menu est actif */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="company-name">Cashflow BOT</div>
+        <div class="menu-toggle" id="menuToggle">
+            &#9776; <!-- Icône de menu -->
+        </div>
+        <nav id="navMenu">
+            <a href="accueil.html">Accueil</a>
+            <a href="inscription.html">Inscription</a>
+            <a href="compte.html">Mon Compte</a>
+            <a href="notification.html">Notifications</a>
+            <a href="politique.html">Politique et Confidentialités</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Notifications</h1>
+        <div class="info">
+            <h2>Utilisateurs inscrits via votre code de parrainage</h2>
+            <ul id="notificationList">
+                <!-- Les notifications seront ajoutées ici par JavaScript -->
+            </ul>
+        </div>
+        <div class="link">
+            <a href="compte.html">Retour à la gestion du compte</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Cashflow BOT. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Fonction pour charger les notifications du localStorage
+        function loadNotifications() {
+            const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+            const list = document.getElementById('notificationList');
+            
+            // Vider la liste actuelle
+            list.innerHTML = '';
+
+            // Ajouter chaque notification à la liste
+            notifications.forEach(notification => {
+                const listItem = document.createElement('li');
+                listItem.textContent = notification;
+                list.appendChild(listItem);
+            });
+        }
+
+        // Charger les notifications au démarrage
+        loadNotifications();
+
+        // Écouteur d'événements pour le menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active'); // Basculer la classe 'active'
+        });
+    </script>
+</body>
+</html>

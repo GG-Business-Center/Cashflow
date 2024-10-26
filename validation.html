@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification d'âge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #ageCheck {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ageCheck">
+        <h1>Êtes-vous âgé de 18 ans ou plus ?</h1>
+        <button onclick="checkAge()">OK</button>
+    </div>
+
+    <script>
+        function checkAge() {
+            // Redirige l'utilisateur vers la page principale
+            window.location.href = 'accueil.html'; // Mettez les guillemets autour de l'URL
+        }
+
+        // Affiche la boîte de vérification d'âge après le chargement de la page
+        window.onload = function() {
+            document.getElementById('ageCheck').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
+
